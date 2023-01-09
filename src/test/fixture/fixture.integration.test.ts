@@ -1,6 +1,6 @@
 import request from 'supertest'
-import {IFixture} from "@app/modules/fixture/fixture.interface";
 import server from "@app/server";
+import {FixtureModel} from "@modules/fixture/fixture.model";
 let shareData = { fixtures: [] }
 const createFixtureData = {
     name: 'aaa',
@@ -28,26 +28,26 @@ describe('Fixture', () => {
     })
 
     it('Get Fixture Detail', async () => {
-        const category: IFixture = shareData.fixtures[0]
+        const fixture:FixtureModel = shareData.fixtures[0]
         const res = await request(server.app)
-            .get(`/api/v1/fixtures/${category.key}`)
+            .get(`/api/v1/fixtures/${fixture.id}`)
             .send()
         expect(res.status).toEqual(200)
     })
 
     it('Update Fixture', async () => {
-        const category: IFixture = shareData.fixtures[0]
+        const fixture:FixtureModel = shareData.fixtures[0]
         const res = await request(server.app)
-            .put(`/api/v1/fixtures/${category.key}`)
+            .put(`/api/v1/fixtures/${fixture.id}`)
             .send(updateFixtureData)
         expect(res.status).toEqual(200)
         expect(res.body.name).toEqual(updateFixtureData.name)
     })
 
     it('Delete Fixture', async () => {
-        const category: IFixture = shareData.fixtures[0]
+        const fixture:FixtureModel = shareData.fixtures[0]
         const res = await request(server.app)
-            .delete(`/api/v1/fixtures/${category.key}`)
+            .delete(`/api/v1/fixtures/${fixture.id}`)
             .send()
         expect(res.status).toEqual(200)
     })

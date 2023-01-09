@@ -9,6 +9,7 @@ import {config} from '@config'
 import ICustomRouter from '@interfaces/custom.router.interface'
 import SportRadarScheduler from "@modules/jobs/sportradar.schedule";
 import TheSportScheduler from "@modules/jobs/thesport.schedule";
+import { AppDataSource } from "@config/data-source"
 
 class App {
     public app: express.Application
@@ -47,7 +48,7 @@ class App {
     }
 
     private connectToDb() {
-        //TODO: connect to MySQL
+        AppDataSource.initialize().then(async () => {}).catch((error: any) => console.log(error))
     }
 
     private initSwaggerDocs() {
