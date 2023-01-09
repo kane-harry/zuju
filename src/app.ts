@@ -7,6 +7,8 @@ import errorMiddleware from '@middlewares/error.middleware'
 import requestMiddleware from '@middlewares/request.middleware'
 import {config} from '@config'
 import ICustomRouter from '@interfaces/custom.router.interface'
+import SportRadarScheduler from "@modules/jobs/sportradar.schedule";
+import TheSportScheduler from "@modules/jobs/thesport.schedule";
 
 class App {
     public app: express.Application
@@ -18,6 +20,7 @@ class App {
         this.initRouters(routers)
         this.initErrorHandling()
         this.initSwaggerDocs()
+        this.initSchedulers()
     }
 
     public listen() {
@@ -49,6 +52,13 @@ class App {
 
     private initSwaggerDocs() {
         this.app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(openApiV1Documents))
+    }
+
+    private initSchedulers() {
+        return [
+            new SportRadarScheduler(),
+            new TheSportScheduler(),
+        ]
     }
 }
 
