@@ -1,4 +1,4 @@
-import {IFixtureQueryFilter} from "@modules/fixture/fixture.interface";
+import {IFixtureCheckingDateFilter, IFixtureQueryFilter} from "@modules/fixture/fixture.interface";
 import {FixtureModel} from "@modules/fixture/fixture.model";
 import {Between, getRepository, ILike} from "typeorm";
 import {QueryRO} from "@interfaces/query.model";
@@ -96,5 +96,25 @@ export default class FixtureService {
             skip: (filter.page_index - 1) * filter.page_size || 0
         });
         return new QueryRO(totalCount, filter.page_index, filter.page_size, result)
+    }
+
+    static async checkingDateHasFixtures(filter: IFixtureCheckingDateFilter) {
+        let andWhere:any = {}
+        if (filter.from_date && filter.to_date) {
+            andWhere.time = Between(filter.from_date, filter.to_date)
+        }
+        const repo = getRepository(FixtureModel)
+        const sortBy = filter.sort_by || 'id'
+        const originalTimes = await repo.find({
+            select: {
+              time: true
+            },
+            where: andWhere,
+            order: { [sortBy]: filter.order_by },
+            take: filter.page_size,
+            skip: (filter.page_index - 1) * filter.page_size || 0
+        });
+        const convertTimes = originalTimes.map(item => moment(item.time).add(filter.timezone_offset * -1, 'minutes').toDate().toISOString().substring(0, 10))
+        return [...new Set(convertTimes)]
     }
 }

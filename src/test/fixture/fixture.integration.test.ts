@@ -120,6 +120,18 @@ describe('Fixture', () => {
         expect(res.body.items.length).toBeGreaterThan(0)
     })
 
+    it('Checking Date', async () => {
+        const fromDate = '2020-11-10T10:23:33.000Z'
+        const toDate = '2020-12-30T10:23:33.000Z'
+        const timezone_offset = 300
+        const res = await request(server.app)
+            .get(`/api/v1/fixtures/date/check?from_date=${fromDate}&to_date=${toDate}&timezone_offset=${timezone_offset}`)
+            .send()
+        expect(res.status).toEqual(200)
+        expect(res.body.length).toBeGreaterThan(0)
+        expect(res.body[0]).toEqual('2020-11-21')
+    })
+
     it('Get Fixture Detail', async () => {
         const fixture:any = shareData.fixtures[0]
         const res = await request(server.app)

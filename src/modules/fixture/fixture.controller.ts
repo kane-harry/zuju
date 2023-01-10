@@ -1,7 +1,7 @@
 import {Response} from 'express'
 import {CustomRequest} from "@middlewares/request.middleware"
 import FixtureService from "@modules/fixture/fixture.service"
-import {IFixtureQueryFilter} from "@modules/fixture/fixture.interface"
+import {IFixtureCheckingDateFilter, IFixtureQueryFilter} from "@modules/fixture/fixture.interface"
 import {FixtureModel} from "@modules/fixture/fixture.model"
 import {getConnection} from "typeorm"
 
@@ -70,6 +70,12 @@ export default class FixtureController {
     static async listingFixtures(req: CustomRequest, res: Response) {
         const filter = req.query as IFixtureQueryFilter
         const data = await FixtureService.listingFixtures(filter)
+        return res.json(data)
+    }
+
+    static async checkingDateHasFixtures(req: CustomRequest, res: Response) {
+        const filter = req.query as IFixtureCheckingDateFilter
+        const data = await FixtureService.checkingDateHasFixtures(filter)
         return res.json(data)
     }
 }
