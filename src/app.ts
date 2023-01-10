@@ -9,14 +9,12 @@ import {config} from '@config'
 import ICustomRouter from '@interfaces/custom.router.interface'
 import SportRadarScheduler from "@modules/jobs/sportradar.schedule";
 import TheSportScheduler from "@modules/jobs/thesport.schedule";
-import { AppDataSource } from "@config/data-source"
 
 class App {
     public app: express.Application
     constructor(routers: ICustomRouter[]) {
         this.app = express()
 
-        this.connectToDb()
         this.initMiddlewares()
         this.initRouters(routers)
         this.initErrorHandling()
@@ -45,10 +43,6 @@ class App {
         customRouters.forEach(router => {
             this.app.use('/api/v1', router.router)
         })
-    }
-
-    private connectToDb() {
-        AppDataSource.initialize().then(async () => {}).catch((error: any) => console.log(error))
     }
 
     private initSwaggerDocs() {

@@ -46,7 +46,7 @@ export default class FixtureService {
         existingFixture.awayTeam = updateFixtureDto.awayTeam ?? existingFixture.awayTeam
         existingFixture.score = updateFixtureDto.score ?? existingFixture.score
         existingFixture.status = updateFixtureDto.status ?? existingFixture.status
-        existingFixture.time = updateFixtureDto.time ?? existingFixture.time
+        existingFixture.time = updateFixtureDto.time ? (new Date(updateFixtureDto.time)).toISOString() : existingFixture.time
 
         return await repo.save(existingFixture)
     }

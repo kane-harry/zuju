@@ -22,3 +22,4 @@ if (process.env.NODE_ENV === 'test') {
 }
 // @ts-ignore
 export const AppDataSource = new DataSource(databaseConfig)
+AppDataSource.initialize().then(async () => {}).catch((error: any) => console.log(error))
