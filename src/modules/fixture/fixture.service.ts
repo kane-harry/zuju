@@ -1,6 +1,6 @@
 import {IFixtureQueryFilter} from "@modules/fixture/fixture.interface";
 import {FixtureModel} from "@modules/fixture/fixture.model";
-import {getRepository, Like} from "typeorm";
+import {getRepository, ILike} from "typeorm";
 import {QueryRO} from "@interfaces/query.model";
 
 export default class FixtureService {
@@ -67,9 +67,10 @@ export default class FixtureService {
     static async listingFixtures(filter: IFixtureQueryFilter) {
         let where:any = []
         if (filter.search_key) {
-            where.push({tournament : Like(`%${filter.search_key}%`)})
-            where.push({homeTeam : Like(`%${filter.search_key}%`)})
-            where.push({awayTeam : Like(`%${filter.search_key}%`)})
+            //Handle case insensitive
+            where.push({tournament : ILike(`%${filter.search_key}%`)})
+            where.push({homeTeam : ILike(`%${filter.search_key}%`)})
+            where.push({awayTeam : ILike(`%${filter.search_key}%`)})
         }
         const repo = getRepository(FixtureModel)
         const [result, totalCount] = await repo.findAndCount({
