@@ -17,5 +17,6 @@ const config: Config.InitialOptions = {
         "@utils/(.*)": "<rootDir>/src/utils/$1",
         "@docs/(.*)": "<rootDir>/src/docs/$1",
     },
+    roots: ["./src"]
 };
 export default config;

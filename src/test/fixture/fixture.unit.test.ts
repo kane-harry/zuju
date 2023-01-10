@@ -24,9 +24,11 @@ describe('Fixture Unit', () => {
         return initDbTest()
     });
 
-    afterAll(() => {
-        return closeDbTest()
+    afterAll(done => {
+        closeDbTest()
+        done()
     });
+
     it('Create Fixture', async () => {
         const repo = AppDataSource.getRepository(FixtureModel)
         const res:any = await FixtureService.createFixture(createFixtureData)

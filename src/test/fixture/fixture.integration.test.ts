@@ -23,9 +23,11 @@ describe('Fixture Integration', () => {
         return initDbTest()
     });
 
-    afterAll(() => {
-        return closeDbTest()
+    afterAll(done => {
+        closeDbTest()
+        done()
     });
+
     it('Create Fixture', async () => {
         const res = await request(server.app)
             .post(`/api/v1/fixtures`)
