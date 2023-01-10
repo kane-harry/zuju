@@ -15,6 +15,7 @@
     },
     {
       "name": "from_date",
+      "description": "ISO String format",
       "in": "query",
       "schema": {
         "type": "string"
@@ -23,6 +24,7 @@
     },
     {
       "name": "to_date",
+      "description": "ISO String format",
       "in": "query",
       "schema": {
         "type": "string"

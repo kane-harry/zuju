@@ -1,0 +1,44 @@
+{
+  "tags": [
+    "Fixtures"
+  ],
+  "summary": "Check date has fixtures",
+  "security": [],
+  "parameters": [
+    {
+      "name": "from_date",
+      "description": "ISO String format",
+      "in": "query",
+      "schema": {
+        "type": "string"
+      },
+      "example": "2020-01-01T00:00:00.000Z"
+    },
+    {
+      "name": "to_date",
+      "description": "ISO String format",
+      "in": "query",
+      "schema": {
+        "type": "string"
+      },
+      "example": "2023-01-01T12:00:00.000Z"
+    },
+    {
+      "name": "timezone_offset",
+      "description": "Timezone offset of current user, calculate by minutes. Example user in GMT+7 mean timezone offset = 7 * 60 = 420",
+      "in": "query",
+      "schema": {
+        "type": "number"
+      },
+      "example": "420"
+    }
+  ],
+  "responses": {
+    "2xx": {
+      "description": "Successful response a list date which has fixtures"
+    },
+    "5xx": {
+      "description": "Internal Server Error"
+    }
+  }
+}

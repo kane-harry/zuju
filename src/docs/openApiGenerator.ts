@@ -4,6 +4,7 @@ import queryFixture from '@docs/fixtures/queryFixture.json'
 import updateFixture from '@docs/fixtures/updateFixture.json'
 import getFixtureDetail from '@docs/fixtures/getFixtureDetail.json'
 import deleteFixture from '@docs/fixtures/deleteFixture.json'
+import checkDateHasFixture from '@docs/fixtures/checkDateHasFixture.json'
 export const openApiV1Documents = {
     openapi: '3.0.3',
     info: {
@@ -34,6 +35,9 @@ export const openApiV1Documents = {
             "put": updateFixture,
             "get": getFixtureDetail,
             "delete": deleteFixture
+        },
+        "/fixtures/date/check": {
+            "get": checkDateHasFixture
         }
     }
 }
