@@ -1,0 +1,61 @@
+{
+  "tags": [
+    "Fixtures"
+  ],
+  "summary": "Create Fixture",
+  "requestBody": {
+    "content": {
+      "application/x-www-form-urlencoded": {
+        "schema": {
+          "type": "object",
+          "properties": {
+            "tournament": {
+              "type": "string",
+              "example": "Premier League"
+            },
+            "round": {
+              "type": "string",
+              "example": "Round 3"
+            },
+            "season": {
+              "type": "string",
+              "example": "2020-2021"
+            },
+            "homeTeam": {
+              "type": "string",
+              "example": "Manchester United"
+            },
+            "awayTeam": {
+              "type": "string",
+              "example": "Lester City"
+            },
+            "time": {
+              "type": "string",
+              "description": "ISO String format",
+              "example": "2020-10-19T19:30:00.000Z"
+            },
+            "score": {
+              "type": "string",
+              "example": "4/1"
+            },
+            "status": {
+              "type": "string",
+              "example": "Full Time"
+            }
+          }
+        }
+      }
+    }
+  },
+  "responses": {
+    "2xx": {
+      "description": "Successful response a fixture object"
+    },
+    "4xx": {
+      "description": "Validation fail"
+    },
+    "5xx": {
+      "description": "Internal Server Error"
+    }
+  }
+}

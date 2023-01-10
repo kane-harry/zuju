@@ -1,0 +1,28 @@
+{
+  "tags": [
+    "Fixtures"
+  ],
+  "summary": "Delete Fixture",
+  "parameters": [
+    {
+      "name": "key",
+      "in": "path",
+      "schema": {
+        "type": "string"
+      },
+      "required": true,
+      "example": 1
+    }
+  ],
+  "responses": {
+    "200": {
+      "description": "Successful response",
+      "content": {
+        "application/json": {}
+      }
+    },
+    "5xx": {
+      "description": "Internal Server Error"
+    }
+  }
+}
