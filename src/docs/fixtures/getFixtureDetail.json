@@ -11,15 +11,16 @@
       "schema": {
         "type": "string"
       },
-      "required": true
+      "required": true,
+      "example": 1
     }
   ],
   "responses": {
-    "200": {
-      "description": "Successful response",
-      "content": {
-        "application/json": {}
-      }
+    "2xx": {
+      "description": "Successful response a fixture object"
+    },
+    "5xx": {
+      "description": "Internal Server Error"
     }
   }
 }
