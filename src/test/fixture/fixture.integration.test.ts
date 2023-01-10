@@ -44,6 +44,18 @@ describe('Fixture', () => {
             .send()
         expect(res.status).toEqual(200)
         shareData.fixtures = res.body.items
+        expect(res.body.items.length).toBeGreaterThan(0)
+    })
+
+    it('Query Fixtures With Search', async () => {
+        const page_index = 1
+        const page_size = 25
+        const search_key = 'c'
+        const res = await request(server.app)
+            .get(`/api/v1/fixtures?page_index=${page_index}&page_size=${page_size}&search_key=${search_key}`)
+            .send()
+        expect(res.status).toEqual(200)
+        expect(res.body.items.length).toEqual(0)
     })
 
     it('Get Fixture Detail', async () => {

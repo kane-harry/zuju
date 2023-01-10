@@ -70,7 +70,9 @@ export default class FixtureService {
         const skip = (page - 1) * take || 0
         let where:any = {}
         if (filter.search_key) {
-            where.name = Like(`%${filter.search_key}%`)
+            where.tournament = Like(`%${filter.search_key}%`)
+            where.homeTeam = Like(`%${filter.search_key}%`)
+            where.awayTeam = Like(`%${filter.search_key}%`)
         }
         const repo = getRepository(FixtureModel)
         const [result, totalCount] = await repo.findAndCount({
