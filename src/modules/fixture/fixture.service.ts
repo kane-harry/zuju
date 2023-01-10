@@ -65,9 +65,6 @@ export default class FixtureService {
     }
 
     static async listingFixtures(filter: IFixtureQueryFilter) {
-        const take = filter.page_size || 10
-        const page = filter.page_index || 1
-        const skip = (page - 1) * take || 0
         let where:any = []
         if (filter.search_key) {
             where.push({tournament : Like(`%${filter.search_key}%`)})
@@ -77,8 +74,8 @@ export default class FixtureService {
         const repo = getRepository(FixtureModel)
         const [result, totalCount] = await repo.findAndCount({
             where: where,
-            take: take,
-            skip: skip
+            take: filter.page_size,
+            skip: (filter.page_index - 1) * filter.page_size || 0
         });
         return new QueryRO(totalCount, filter.page_index, filter.page_size, result)
     }
