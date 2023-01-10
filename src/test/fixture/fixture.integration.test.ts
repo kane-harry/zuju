@@ -4,10 +4,18 @@ import {closeDbTest, initDbTest} from "@app/test/config.test.db";
 
 let shareData:any = {}
 const createFixtureData = {
-    tournament: 'aaa',
+    tournament: 'Premier League',
+    homeTeam: "Manchester United",
+    awayTeam: "Lester City",
+    score: "3/1",
+    time: new Date("2021-11-22").toISOString()
 }
 const updateFixtureData = {
-    tournament: 'aaab',
+    tournament: 'La Liga',
+    homeTeam: "Manchester City",
+    awayTeam: "Chelsea",
+    score: "4/1",
+    time: new Date("2020-11-22").toISOString()
 }
 jest.setTimeout(30000)
 describe('Fixture', () => {
@@ -24,6 +32,10 @@ describe('Fixture', () => {
             .send(createFixtureData)
         expect(res.status).toEqual(200)
         expect(res.body.tournament).toEqual(createFixtureData.tournament)
+        expect(res.body.homeTeam).toEqual(createFixtureData.homeTeam)
+        expect(res.body.awayTeam).toEqual(createFixtureData.awayTeam)
+        expect(res.body.score).toEqual(createFixtureData.score)
+        expect(res.body.time).toEqual(createFixtureData.time)
     })
 
     it('Query Fixtures', async () => {
@@ -64,6 +76,10 @@ describe('Fixture', () => {
             .send(updateFixtureData)
         expect(res.status).toEqual(200)
         expect(res.body.tournament).toEqual(updateFixtureData.tournament)
+        expect(res.body.homeTeam).toEqual(updateFixtureData.homeTeam)
+        expect(res.body.awayTeam).toEqual(updateFixtureData.awayTeam)
+        expect(res.body.score).toEqual(updateFixtureData.score)
+        expect(res.body.time).toEqual(updateFixtureData.time)
     })
 
     it('Delete Fixture', async () => {
