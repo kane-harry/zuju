@@ -73,8 +73,10 @@ export default class FixtureService {
             where.push({awayTeam : ILike(`%${filter.search_key}%`)})
         }
         const repo = getRepository(FixtureModel)
+        const sortBy = filter.sort_by || 'id'
         const [result, totalCount] = await repo.findAndCount({
-            where: where,
+            where: where.length ? where : {},
+            order: { [sortBy]: filter.order_by },
             take: filter.page_size,
             skip: (filter.page_index - 1) * filter.page_size || 0
         });
