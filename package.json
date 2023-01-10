@@ -40,7 +40,6 @@
     "ignore": [
       ".git",
       "node_modules",
-      "dist",
       "src/logs/*",
       "src/**/*.{spec,test}.ts"
     ],

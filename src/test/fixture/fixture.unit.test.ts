@@ -9,14 +9,14 @@ const createFixtureData: any = {
     homeTeam: "Manchester United",
     awayTeam: "Lester City",
     score: "3/1",
-    time: '2020-10-19T19:30:00.000Z'
+    time: '2020-11-20T19:30:00.000Z'
 }
 const updateFixtureData: any = {
     tournament: 'La Liga',
     homeTeam: "Manchester City",
     awayTeam: "Chelsea",
     score: "4/1",
-    time: '2020-10-19T19:30:00.000Z'
+    time: '2020-11-20T19:30:00.000Z'
 }
 jest.setTimeout(30000)
 describe('Fixture Unit', () => {
