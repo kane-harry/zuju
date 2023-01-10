@@ -8,14 +8,14 @@ const createFixtureData = {
     homeTeam: "Manchester United",
     awayTeam: "Lester City",
     score: "3/1",
-    time: new Date("Sun Nov 22 2020 08:00:00 GMT+0700 (Indochina Time)")
+    time: '2020-10-19T19:30:00.000Z'
 }
 const updateFixtureData = {
     tournament: 'La Liga',
     homeTeam: "Manchester City",
     awayTeam: "Chelsea",
     score: "4/1",
-    time: new Date("Sun Nov 22 2020 08:00:00 GMT+0700 (Indochina Time)")
+    time: '2020-10-19T19:30:00.000Z'
 }
 jest.setTimeout(30000)
 describe('Fixture Integration', () => {
@@ -35,7 +35,7 @@ describe('Fixture Integration', () => {
         expect(res.body.homeTeam).toEqual(createFixtureData.homeTeam)
         expect(res.body.awayTeam).toEqual(createFixtureData.awayTeam)
         expect(res.body.score).toEqual(createFixtureData.score)
-        expect(res.body.time).toEqual(createFixtureData.time.toISOString())
+        expect(res.body.time).toEqual(createFixtureData.time)
     })
 
     it('Query Fixtures', async () => {
@@ -151,7 +151,7 @@ describe('Fixture Integration', () => {
         expect(res.body.homeTeam).toEqual(updateFixtureData.homeTeam)
         expect(res.body.awayTeam).toEqual(updateFixtureData.awayTeam)
         expect(res.body.score).toEqual(updateFixtureData.score)
-        expect(res.body.time.toString()).toEqual(updateFixtureData.time.toISOString())
+        expect(res.body.time.toString()).toEqual(updateFixtureData.time)
     })
 
     it('Delete Fixture', async () => {

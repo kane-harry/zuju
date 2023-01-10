@@ -5,34 +5,41 @@
   "summary": "Create Fixture",
   "requestBody": {
     "content": {
-      "multipart/form-data": {
+      "application/x-www-form-urlencoded": {
         "schema": {
           "type": "object",
           "properties": {
-            "title": {
+            "tournament": {
               "type": "string",
-              "example": "Test2"
+              "example": "Premier League"
             },
-            "tags": {
+            "round": {
               "type": "string",
-              "example": "tag1,tag2"
+              "example": "Round 3"
             },
-            "type": {
+            "season": {
               "type": "string",
-              "description": "News |  Guide",
-              "example": "News"
+              "example": "2020-2021"
             },
-            "short_description": {
+            "homeTeam": {
               "type": "string",
-              "example": "short description"
+              "example": "Manchester United"
             },
-            "content": {
+            "awayTeam": {
               "type": "string",
-              "example": "content"
+              "example": "Lester City"
             },
-            "cover_image": {
+            "time": {
               "type": "string",
-              "format": "binary"
+              "example": "2020-10-19T19:30:00.000Z"
+            },
+            "score": {
+              "type": "string",
+              "example": "4/1"
+            },
+            "status": {
+              "type": "string",
+              "example": "Full Time"
             }
           }
         }
@@ -40,11 +47,14 @@
     }
   },
   "responses": {
-    "200": {
-      "description": "Successful response",
-      "content": {
-        "application/json": {}
-      }
+    "2xx": {
+      "description": "Successful response a fixture object"
+    },
+    "4xx": {
+      "description": "Validation fail"
+    },
+    "5xx": {
+      "description": "Internal Server Error"
     }
   }
 }

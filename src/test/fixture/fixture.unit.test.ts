@@ -9,14 +9,14 @@ const createFixtureData: any = {
     homeTeam: "Manchester United",
     awayTeam: "Lester City",
     score: "3/1",
-    time: new Date("Sun Nov 22 2020 08:00:00 GMT+0700 (Indochina Time)")
+    time: '2020-10-19T19:30:00.000Z'
 }
 const updateFixtureData: any = {
     tournament: 'La Liga',
     homeTeam: "Manchester City",
     awayTeam: "Chelsea",
     score: "4/1",
-    time: new Date("Sun Nov 22 2020 08:00:00 GMT+0700 (Indochina Time)")
+    time: '2020-10-19T19:30:00.000Z'
 }
 jest.setTimeout(30000)
 describe('Fixture Unit', () => {
@@ -47,7 +47,7 @@ describe('Fixture Unit', () => {
         expect(row.homeTeam).toEqual(updateFixtureData.homeTeam)
         expect(row.awayTeam).toEqual(updateFixtureData.awayTeam)
         expect(row.score).toEqual(updateFixtureData.score)
-        expect(row.time).toEqual(updateFixtureData.time.toISOString())
+        expect(row.time).toEqual(updateFixtureData.time)
     })
 
     it('Delete Fixture', async () => {
