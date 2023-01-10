@@ -18,7 +18,7 @@ const updateFixtureData = {
     time: new Date("Sun Nov 22 2020 08:00:00 GMT+0700 (Indochina Time)")
 }
 jest.setTimeout(30000)
-describe('Fixture', () => {
+describe('Fixture Integration', () => {
     beforeAll(() => {
         return initDbTest()
     });
@@ -160,5 +160,6 @@ describe('Fixture', () => {
             .delete(`/api/v1/fixtures/${fixture.id}`)
             .send()
         expect(res.status).toEqual(200)
+        expect(res.body.success).toEqual(true)
     })
 })

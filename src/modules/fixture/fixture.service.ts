@@ -62,8 +62,8 @@ export default class FixtureService {
         if (!existingFixture) {
             throw new Error('Fixture not found');
         }
-        await repo.delete(existingFixture);
-        return {success: true}
+        const res:any = await repo.softDelete(existingFixture.id);
+        return {success: res.affected > 0}
     }
 
     static async listingFixtures(filter: IFixtureQueryFilter) {

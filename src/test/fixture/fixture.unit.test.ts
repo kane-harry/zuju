@@ -18,7 +18,7 @@ const updateFixtureData: any = {
     time: new Date("Sun Nov 22 2020 08:00:00 GMT+0700 (Indochina Time)")
 }
 jest.setTimeout(30000)
-describe('Fixture', () => {
+describe('Fixture Unit', () => {
     beforeAll(() => {
         return initDbTest()
     });
@@ -47,5 +47,13 @@ describe('Fixture', () => {
         expect(row.awayTeam).toEqual(updateFixtureData.awayTeam)
         expect(row.score).toEqual(updateFixtureData.score)
         expect(row.time).toEqual(updateFixtureData.time.toISOString())
+    })
+
+    it('Delete Fixture', async () => {
+        const repo = AppDataSource.getRepository(FixtureModel)
+        const res:any = await FixtureService.deleteFixture(shareData.id)
+        expect(res.success).toEqual(true)
+        const row:any = await repo.findOneBy({id: res.id})
+        expect(row).toBeNull()
     })
 })

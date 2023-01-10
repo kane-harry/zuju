@@ -26,7 +26,7 @@
  * - Substitution
  * */
 
-import {Column, Entity, PrimaryGeneratedColumn} from 'typeorm';
+import {Column, Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, DeleteDateColumn} from 'typeorm';
 
 @Entity()
 export class FixtureModel {
@@ -56,4 +56,13 @@ export class FixtureModel {
 
     @Column({nullable: true})
     public score: string;
+
+    @CreateDateColumn()
+    public created!: Date;
+
+    @UpdateDateColumn()
+    public updated!: Date;
+
+    @DeleteDateColumn()
+    public deletedAt?: Date;
 }
