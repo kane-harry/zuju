@@ -2,7 +2,7 @@ import "reflect-metadata"
 import { DataSource } from "typeorm"
 import {FixtureModel} from "@modules/fixture/fixture.model";
 
-export const AppDataSource = new DataSource({
+let databaseConfig:any = {
     type: "mysql",
     host:  process.env.DB_HOST || "localhost",
     port:  3306,
@@ -14,4 +14,11 @@ export const AppDataSource = new DataSource({
     entities: [FixtureModel],
     migrations: [],
     subscribers: [],
-})
+}
+
+if (process.env.NODE_ENV === 'test') {
+    databaseConfig.type = 'sqlite'
+    databaseConfig.database = ":memory:"
+}
+// @ts-ignore
+export const AppDataSource = new DataSource(databaseConfig)

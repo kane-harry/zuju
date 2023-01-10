@@ -9,12 +9,13 @@ const config: Config.InitialOptions = {
     bail: 1,
     moduleNameMapper: {
         "@app/(.*)": "<rootDir>/src/$1",
-        "@config": "<rootDir>/src/config/",
         "@config/(.*)": "<rootDir>/src/config/$1",
+        "@config": "<rootDir>/src/config/",
         "@interfaces/(.*)": "<rootDir>/src/interfaces/$1",
         "@middlewares/(.*)": "<rootDir>/src/middlewares/$1",
         "@modules/(.*)": "<rootDir>/src/modules/$1",
         "@utils/(.*)": "<rootDir>/src/utils/$1",
+        "@docs/(.*)": "<rootDir>/src/docs/$1",
     },
 };
 export default config;

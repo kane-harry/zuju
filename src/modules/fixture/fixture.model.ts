@@ -26,18 +26,34 @@
  * - Substitution
  * */
 
-import {Entity, PrimaryGeneratedColumn} from 'typeorm';
+import {Column, Entity, PrimaryGeneratedColumn} from 'typeorm';
 
 @Entity()
 export class FixtureModel {
     @PrimaryGeneratedColumn()
     public id: number;
+
+    @Column({nullable: true})
     public tournament: string;
+
+    @Column({nullable: true})
     public round: string;
+
+    @Column({nullable: true})
     public season: string;
+
+    @Column({nullable: true})
     public homeTeam: string;
+
+    @Column({nullable: true})
     public awayTeam: string;
+
+    @Column({nullable: true})
     public time: Date;
+
+    @Column({nullable: true})
     public status: string;
+
+    @Column({nullable: true})
     public score: string;
 }

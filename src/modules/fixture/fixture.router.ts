@@ -14,9 +14,9 @@ class FixtureRouter implements ICustomRouter {
     private initRoutes() {
         this.router.get(`${this.path}`, asyncHandler(FixtureController.listingFixtures))
         this.router.post(`${this.path}`, asyncHandler(FixtureController.createFixture))
-        this.router.get(`${this.path}:key`, asyncHandler(FixtureController.getFixture))
-        this.router.put(`${this.path}:key`, asyncHandler(FixtureController.updateFixture))
-        this.router.delete(`${this.path}:key`, asyncHandler(FixtureController.deleteFixture))
+        this.router.get(`${this.path}/:key`, asyncHandler(FixtureController.getFixture))
+        this.router.put(`${this.path}/:key`, asyncHandler(FixtureController.updateFixture))
+        this.router.delete(`${this.path}/:key`, asyncHandler(FixtureController.deleteFixture))
     }
 }
 

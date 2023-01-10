@@ -1,6 +1,6 @@
 import IFilterModel from '@interfaces/filter.model.interface'
 
 export interface IFixtureQueryFilter extends IFilterModel {
-    searchKey: string
+    search_key: string
     day: string
 }

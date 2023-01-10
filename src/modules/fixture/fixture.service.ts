@@ -1,6 +1,7 @@
 import {IFixtureQueryFilter} from "@modules/fixture/fixture.interface";
 import {FixtureModel} from "@modules/fixture/fixture.model";
-import {getRepository} from "typeorm";
+import {getRepository, Like} from "typeorm";
+import {QueryRO} from "@interfaces/query.model";
 
 export default class FixtureService {
     static async createFixture(createFixtureDto: FixtureModel) {
@@ -64,6 +65,19 @@ export default class FixtureService {
     }
 
     static async listingFixtures(filter: IFixtureQueryFilter) {
-
+        const take = filter.page_size || 10
+        const page = filter.page_index || 1
+        const skip = (page - 1) * take || 0
+        let where:any = {}
+        if (filter.search_key) {
+            where.name = Like(`%${filter.search_key}%`)
+        }
+        const repo = getRepository(FixtureModel)
+        const [result, totalCount] = await repo.findAndCount({
+            where: where,
+            take: take,
+            skip: skip
+        });
+        return new QueryRO(totalCount, filter.page_index, filter.page_size, result)
     }
 }
