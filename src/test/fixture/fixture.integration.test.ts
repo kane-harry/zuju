@@ -2,7 +2,7 @@ import request from 'supertest'
 import server from "@app/server"
 import {closeDbTest, initDbTest} from "@app/test/config.test.db";
 
-let shareData = { fixtures: [] }
+let shareData:any = {}
 const createFixtureData = {
     tournament: 'aaa',
 }
