@@ -59,7 +59,7 @@ describe('Fixture', () => {
     })
 
     it('Get Fixture Detail', async () => {
-        const fixture:FixtureModel = shareData.fixtures[0]
+        const fixture:any = shareData.fixtures[0]
         const res = await request(server.app)
             .get(`/api/v1/fixtures/${fixture.id}`)
             .send()
@@ -68,7 +68,7 @@ describe('Fixture', () => {
     })
 
     it('Update Fixture', async () => {
-        const fixture:FixtureModel = shareData.fixtures[0]
+        const fixture:any = shareData.fixtures[0]
         const res = await request(server.app)
             .put(`/api/v1/fixtures/${fixture.id}`)
             .send(updateFixtureData)
@@ -77,7 +77,7 @@ describe('Fixture', () => {
     })
 
     it('Delete Fixture', async () => {
-        const fixture:FixtureModel = shareData.fixtures[0]
+        const fixture:any = shareData.fixtures[0]
         const res = await request(server.app)
             .delete(`/api/v1/fixtures/${fixture.id}`)
             .send()
