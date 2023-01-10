@@ -1,3 +1,5 @@
+import dotenv from 'dotenv'
+dotenv.config()
 import App from './app'
 import FixtureRouter from '@modules/fixture/fixture.router'
 
