@@ -6,61 +6,68 @@
   "security": [],
   "parameters": [
     {
-      "name": "terms",
+      "name": "search_key",
       "in": "query",
       "schema": {
         "type": "string"
-      }
+      },
+      "example": "Premier"
+    },
+    {
+      "name": "from_date",
+      "in": "query",
+      "schema": {
+        "type": "string"
+      },
+      "example": "2020-01-01T12:00:00.000Z"
+    },
+    {
+      "name": "to_date",
+      "in": "query",
+      "schema": {
+        "type": "string"
+      },
+      "example": "2023-01-01T12:00:00.000Z"
     },
     {
       "name": "page_index",
       "in": "query",
       "schema": {
         "type": "string"
-      }
+      },
+      "example": "1"
     },
     {
       "name": "page_size",
       "in": "query",
       "schema": {
         "type": "string"
-      }
+      },
+      "example": "10"
     },
     {
       "name": "sort_by",
       "in": "query",
       "schema": {
         "type": "string"
-      }
+      },
+      "example": "id"
     },
     {
       "name": "order_by",
       "in": "query",
       "schema": {
         "type": "string"
-      }
-    },
-    {
-      "name": "author",
-      "in": "query",
-      "schema": {
-        "type": "string"
-      }
-    },
-    {
-      "name": "type",
-      "in": "query",
-      "schema": {
-        "type": "string"
-      }
+      },
+      "example": "DESC"
     }
   ],
   "responses": {
-    "200": {
-      "description": "Successful response",
-      "content": {
-        "application/json": {}
-      }
+    "2xx": {
+      "description": "Successful response a pagination fixture list"
+    },
+    "5xx": {
+      "description": "Internal Server Error"
     }
   }
 }
