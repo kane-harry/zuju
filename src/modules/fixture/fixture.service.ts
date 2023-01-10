@@ -113,7 +113,7 @@ export default class FixtureService {
             take: filter.page_size,
             skip: (filter.page_index - 1) * filter.page_size || 0
         });
-        const convertTimes = originalTimes.map(item => moment(item.time).add(filter.timezone_offset * -1, 'minutes').toDate().toISOString().substring(0, 10))
-        return [...new Set(convertTimes)]
+        const convertDates = originalTimes.map(item => moment(item.time).add(filter.timezone_offset * -1, 'minutes').toDate().toISOString().substring(0, 10))
+        return [...new Set(convertDates)]
     }
 }
