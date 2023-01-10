@@ -24,6 +24,25 @@ This package-lock.json is generated for Linux Environment.
 
 If you have trouble when build (ie for MacOS), please remove package-lock.json file and run above command again
 
+# Configure environment variables
+
+Create .env file by copying example file
+
+```shell
+cp .env.example .env
+```
+
+Then modify environment variables in this file, most variables related to database config
+
+```shell
+NODE_ENV=development
+PORT=3000
+DB_HOST=localhost
+DB_USERNAME=test
+DB_PASSWORD=test
+DB_NAME=test
+```
+
 # Running
 Please open your terminal and run below
 ```shell
