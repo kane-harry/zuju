@@ -1,19 +1,20 @@
 import {IFixtureCheckingDateFilter, IFixtureQueryFilter} from "@modules/fixture/fixture.interface";
 import {FixtureModel} from "@modules/fixture/fixture.model";
-import {Between, getRepository, ILike} from "typeorm";
+import {Between, ILike} from "typeorm";
 import {QueryRO} from "@interfaces/query.model";
 import moment from 'moment'
+import {AppDataSource} from "@config/data-source";
 
 export default class FixtureService {
     static async createFixture(createFixtureDto: FixtureModel) {
         const time = new Date(createFixtureDto.time)
         createFixtureDto.time = time.toISOString ? time.toISOString() : createFixtureDto.time
-        const repo = getRepository(FixtureModel)
+        const repo = AppDataSource.getRepository(FixtureModel)
         return await repo.save(createFixtureDto)
     }
 
     static async getFixture(key:number) {
-        const repo = getRepository(FixtureModel)
+        const repo = AppDataSource.getRepository(FixtureModel)
         let existingFixture = await repo.findOne({
             where: {
                 id: key
@@ -28,7 +29,7 @@ export default class FixtureService {
     }
 
     static async updateFixture(key:number, updateFixtureDto: FixtureModel) {
-        const repo = getRepository(FixtureModel)
+        const repo = AppDataSource.getRepository(FixtureModel)
         let existingFixture = await repo.findOne({
             where: {
                 id: key
@@ -51,7 +52,7 @@ export default class FixtureService {
     }
 
     static async deleteFixture(key:number) {
-        const repo = getRepository(FixtureModel)
+        const repo = AppDataSource.getRepository(FixtureModel)
         let existingFixture = await repo.findOne({
             where: {
                 id: key
@@ -85,7 +86,7 @@ export default class FixtureService {
             where.push({...andWhere, homeTeam : ILike(`%${filter.search_key}%`)})
             where.push({...andWhere, awayTeam : ILike(`%${filter.search_key}%`)})
         }
-        const repo = getRepository(FixtureModel)
+        const repo = AppDataSource.getRepository(FixtureModel)
         const sortBy = filter.sort_by || 'id'
         const [result, totalCount] = await repo.findAndCount({
             where: where.length ? where : andWhere,
@@ -101,7 +102,7 @@ export default class FixtureService {
         if (filter.from_date && filter.to_date) {
             andWhere.time = Between(filter.from_date, filter.to_date)
         }
-        const repo = getRepository(FixtureModel)
+        const repo = AppDataSource.getRepository(FixtureModel)
         const sortBy = filter.sort_by || 'id'
         const originalTimes = await repo.find({
             select: {
