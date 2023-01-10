@@ -1,7 +1,6 @@
 import request from 'supertest'
 import server from "@app/server"
-import {FixtureModel} from "@modules/fixture/fixture.model"
-import {createConnection, getConnection} from "typeorm";
+import {closeDbTest, initDbTest} from "@app/test/config.test.db";
 
 let shareData = { fixtures: [] }
 const createFixtureData = {
@@ -13,20 +12,11 @@ const updateFixtureData = {
 jest.setTimeout(30000)
 describe('Fixture', () => {
     beforeAll(() => {
-        // initDb()
-        return createConnection({
-            type: "sqlite",
-            database: ":memory:",
-            dropSchema: true,
-            entities: [FixtureModel],
-            synchronize: true,
-            logging: false
-        });
+        return initDbTest()
     });
 
     afterAll(() => {
-        let conn = getConnection();
-        return conn.close();
+        return closeDbTest()
     });
     it('Create Fixture', async () => {
         const res = await request(server.app)
