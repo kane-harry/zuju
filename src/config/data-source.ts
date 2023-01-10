@@ -1,5 +1,5 @@
 import "reflect-metadata"
-import { DataSource } from "typeorm"
+import {DataSource} from "typeorm"
 import {FixtureModel} from "@modules/fixture/fixture.model";
 
 let databaseConfig:any = {

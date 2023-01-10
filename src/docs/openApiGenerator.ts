@@ -1,4 +1,4 @@
-import { config } from '@config'
+import {config} from '@config'
 import data from './apiV1.json'
 
 export const openApiV1Documents = {

@@ -6,7 +6,7 @@ export default class SportRadarScheduler implements IScheduler {
         this.fetchDataFromSportRada()
     }
 
-    private async fetchDataFromSportRada() {
+    private fetchDataFromSportRada() {
         const task = cron.schedule('* * * * *', async () => {
             console.log(`${new Date()} execute task - fetch data from sport rada`)
             //TODO: sync data {event.start_time, competitors.name, goals, players...)

@@ -2,6 +2,7 @@ import {closeDbTest, initDbTest} from "@app/test/config.test.db";
 import FixtureService from "@modules/fixture/fixture.service";
 import {AppDataSource} from "@config/data-source";
 import {FixtureModel} from "@modules/fixture/fixture.model";
+
 let shareData:any = {}
 const createFixtureData: any = {
     tournament: 'Premier League',

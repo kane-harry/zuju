@@ -1,5 +1,5 @@
-import { NextFunction, Response } from 'express'
-import { CustomRequest } from './request.middleware'
+import {NextFunction, Response} from 'express'
+import {CustomRequest} from './request.middleware'
 
 function errorMiddleware(error: any, req: CustomRequest, res: Response, next: NextFunction) {
     const status = error.status || 500
