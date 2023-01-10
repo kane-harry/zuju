@@ -70,16 +70,16 @@ export default class FixtureService {
     static async listingFixtures(filter: IFixtureQueryFilter) {
         let where:any = []
         let andWhere:any = {}
-        if (filter.date) {
+        if (filter.from_date && filter.to_date) {
             // Handle user timezone
             // If user choose 2021-07-15 on calendar an user in GMT+1
             // That mean user want to search from 2021-07-14T23:00:00.000Z to 2021-07-15T23:00:00.000Z
             // Remember we store time on database on ISOString format
-            let timezoneOffset = filter.timezone_offset || moment(filter.date).utcOffset()
-            let dateOnly = moment(filter.date).format(moment.HTML5_FMT.DATE)
-            let start = moment.utc(dateOnly).add(timezoneOffset * -1, 'minutes')
-            let end = moment.utc(dateOnly).add(timezoneOffset * -1, 'minutes').add(1, 'day')
-            andWhere.time = Between(start.toISOString(), end.toISOString())
+            // let timezoneOffset = filter.timezone_offset || moment(filter.date).utcOffset()
+            // let dateOnly = moment(filter.date).format(moment.HTML5_FMT.DATE)
+            // let start = moment.utc(dateOnly).add(timezoneOffset * -1, 'minutes')
+            // let end = moment.utc(dateOnly).add(timezoneOffset * -1, 'minutes').add(1, 'day')
+            andWhere.time = Between(filter.from_date, filter.to_date)
         }
         if (filter.search_key) {
             //Handle case insensitive
@@ -90,7 +90,7 @@ export default class FixtureService {
         const repo = getRepository(FixtureModel)
         const sortBy = filter.sort_by || 'id'
         const [result, totalCount] = await repo.findAndCount({
-            where: where.length ? where : {},
+            where: where.length ? where : andWhere,
             order: { [sortBy]: filter.order_by },
             take: filter.page_size,
             skip: (filter.page_index - 1) * filter.page_size || 0

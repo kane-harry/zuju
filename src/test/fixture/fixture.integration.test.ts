@@ -63,7 +63,7 @@ describe('Fixture', () => {
     it('Query Fixtures With Wrong Search', async () => {
         const page_index = 1
         const page_size = 25
-        const search_key = 'ManC'
+        const search_key = 'ManCi'
         const res = await request(server.app)
             .get(`/api/v1/fixtures?page_index=${page_index}&page_size=${page_size}&search_key=${search_key}`)
             .send()
@@ -74,9 +74,10 @@ describe('Fixture', () => {
     it('Query Fixtures With Date', async () => {
         const page_index = 1
         const page_size = 25
-        const date = '2020-11-22'
+        const fromDate = '2020-11-20T10:23:33.000Z'
+        const toDate = '2020-11-23T10:23:33.000Z'
         const res = await request(server.app)
-            .get(`/api/v1/fixtures?page_index=${page_index}&page_size=${page_size}&date=${date}`)
+            .get(`/api/v1/fixtures?page_index=${page_index}&page_size=${page_size}&from_date=${fromDate}&to_date=${toDate}`)
             .send()
         expect(res.status).toEqual(200)
         expect(res.body.items.length).toBeGreaterThan(0)
@@ -85,9 +86,10 @@ describe('Fixture', () => {
     it('Query Fixtures With Wrong Date', async () => {
         const page_index = 1
         const page_size = 25
-        const date = '2020-11-21'
+        const fromDate = '2020-11-10T10:23:33.000Z'
+        const toDate = '2020-11-13T10:23:33.000Z'
         const res = await request(server.app)
-            .get(`/api/v1/fixtures?page_index=${page_index}&page_size=${page_size}&date=${date}`)
+            .get(`/api/v1/fixtures?page_index=${page_index}&page_size=${page_size}&from_date=${fromDate}&to_date=${toDate}`)
             .send()
         expect(res.status).toEqual(200)
         expect(res.body.items.length).toEqual(0)
@@ -96,9 +98,10 @@ describe('Fixture', () => {
     it('Query Fixtures With Wrong Date', async () => {
         const page_index = 1
         const page_size = 25
-        const date = '2020-11-23'
+        const fromDate = '2020-11-23T10:23:33.000Z'
+        const toDate = '2020-11-25T10:23:33.000Z'
         const res = await request(server.app)
-            .get(`/api/v1/fixtures?page_index=${page_index}&page_size=${page_size}&date=${date}`)
+            .get(`/api/v1/fixtures?page_index=${page_index}&page_size=${page_size}&from_date=${fromDate}&to_date=${toDate}`)
             .send()
         expect(res.status).toEqual(200)
         expect(res.body.items.length).toEqual(0)
@@ -108,9 +111,10 @@ describe('Fixture', () => {
         const page_index = 1
         const page_size = 25
         const search_key = 'Man'
-        const date = '2020-11-22'
+        const fromDate = '2020-11-10T10:23:33.000Z'
+        const toDate = '2020-11-23T10:23:33.000Z'
         const res = await request(server.app)
-            .get(`/api/v1/fixtures?page_index=${page_index}&page_size=${page_size}&date=${date}&search_key=${search_key}`)
+            .get(`/api/v1/fixtures?page_index=${page_index}&page_size=${page_size}&from_date=${fromDate}&to_date=${toDate}&search_key=${search_key}`)
             .send()
         expect(res.status).toEqual(200)
         expect(res.body.items.length).toBeGreaterThan(0)
