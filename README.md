@@ -11,7 +11,6 @@ To make this project simple clean, I decide to **NOT IMPLEMENT** basic features 
 - Authentication and authorization
 - Eslint
 - Docker
-- DotEnv
   
 If you want to add above features or others, let make request for next meeting
 
