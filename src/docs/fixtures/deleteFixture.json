@@ -10,7 +10,8 @@
       "schema": {
         "type": "string"
       },
-      "required": true
+      "required": true,
+      "example": 1
     }
   ],
   "responses": {
@@ -19,6 +20,9 @@
       "content": {
         "application/json": {}
       }
+    },
+    "5xx": {
+      "description": "Internal Server Error"
     }
   }
 }
