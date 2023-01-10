@@ -60,10 +60,21 @@ describe('Fixture', () => {
         expect(res.body.items.length).toBeGreaterThan(0)
     })
 
+    it('Query Fixtures With Wrong Search', async () => {
+        const page_index = 1
+        const page_size = 25
+        const search_key = 'ManC'
+        const res = await request(server.app)
+            .get(`/api/v1/fixtures?page_index=${page_index}&page_size=${page_size}&search_key=${search_key}`)
+            .send()
+        expect(res.status).toEqual(200)
+        expect(res.body.items.length).toEqual(0)
+    })
+
     it('Query Fixtures With Date', async () => {
         const page_index = 1
         const page_size = 25
-        const date = (new Date('2021-11-22')).toString()
+        const date = '2020-11-22'
         const res = await request(server.app)
             .get(`/api/v1/fixtures?page_index=${page_index}&page_size=${page_size}&date=${date}`)
             .send()
@@ -74,7 +85,7 @@ describe('Fixture', () => {
     it('Query Fixtures With Wrong Date', async () => {
         const page_index = 1
         const page_size = 25
-        const date = (new Date('2021-11-21')).toString()
+        const date = '2020-11-21'
         const res = await request(server.app)
             .get(`/api/v1/fixtures?page_index=${page_index}&page_size=${page_size}&date=${date}`)
             .send()
@@ -85,7 +96,7 @@ describe('Fixture', () => {
     it('Query Fixtures With Wrong Date', async () => {
         const page_index = 1
         const page_size = 25
-        const date = (new Date('2021-11-23')).toString()
+        const date = '2020-11-23'
         const res = await request(server.app)
             .get(`/api/v1/fixtures?page_index=${page_index}&page_size=${page_size}&date=${date}`)
             .send()
@@ -97,7 +108,7 @@ describe('Fixture', () => {
         const page_index = 1
         const page_size = 25
         const search_key = 'Man'
-        const date = (new Date('Sun Nov 22 2020 06:00:00 GMT+0700 (Indochina Time)')).toString()
+        const date = '2020-11-22'
         const res = await request(server.app)
             .get(`/api/v1/fixtures?page_index=${page_index}&page_size=${page_size}&date=${date}&search_key=${search_key}`)
             .send()
