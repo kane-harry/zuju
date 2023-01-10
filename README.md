@@ -14,7 +14,7 @@ To make this project simple clean, I decide to **NOT IMPLEMENT** basic features 
   
 If you want to add above features or others, let make request for next meeting
 
-#Build and Deployment
+# Build And Deployment
 
 Please open your terminal and run below command
 ```shell
@@ -34,7 +34,7 @@ If you can not start because used port, please try other port like something
 PORT=5000 npm start
 ```
 
-#Testing
+# Testing
 
 I make config to use in-memory sqlite for testing. That mean no need to config test database.
 
