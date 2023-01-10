@@ -1,0 +1,24 @@
+{
+  "tags": [
+    "Fixtures"
+  ],
+  "summary": "Delete Fixture",
+  "parameters": [
+    {
+      "name": "key",
+      "in": "path",
+      "schema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "responses": {
+    "200": {
+      "description": "Successful response",
+      "content": {
+        "application/json": {}
+      }
+    }
+  }
+}

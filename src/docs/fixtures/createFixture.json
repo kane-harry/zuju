@@ -1,0 +1,50 @@
+{
+  "tags": [
+    "Fixtures"
+  ],
+  "summary": "Create Fixture",
+  "requestBody": {
+    "content": {
+      "multipart/form-data": {
+        "schema": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "example": "Test2"
+            },
+            "tags": {
+              "type": "string",
+              "example": "tag1,tag2"
+            },
+            "type": {
+              "type": "string",
+              "description": "News |  Guide",
+              "example": "News"
+            },
+            "short_description": {
+              "type": "string",
+              "example": "short description"
+            },
+            "content": {
+              "type": "string",
+              "example": "content"
+            },
+            "cover_image": {
+              "type": "string",
+              "format": "binary"
+            }
+          }
+        }
+      }
+    }
+  },
+  "responses": {
+    "200": {
+      "description": "Successful response",
+      "content": {
+        "application/json": {}
+      }
+    }
+  }
+}

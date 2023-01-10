@@ -1,0 +1,25 @@
+{
+  "tags": [
+    "Fixtures"
+  ],
+  "summary": "Get Fixture Detail",
+  "security": [],
+  "parameters": [
+    {
+      "name": "key",
+      "in": "path",
+      "schema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "responses": {
+    "200": {
+      "description": "Successful response",
+      "content": {
+        "application/json": {}
+      }
+    }
+  }
+}

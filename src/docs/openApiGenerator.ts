@@ -1,8 +1,10 @@
 import {config} from '@config'
-import data from './apiV1.json'
-
+import createFixture from '@docs/fixtures/createFixture.json'
+import queryFixture from '@docs/fixtures/queryFixture.json'
+import updateFixture from '@docs/fixtures/updateFixture.json'
+import getFixtureDetail from '@docs/fixtures/getFixtureDetail.json'
+import deleteFixture from '@docs/fixtures/deleteFixture.json'
 export const openApiV1Documents = {
-    ...data,
     openapi: '3.0.3',
     info: {
         title: `Zuju`,
@@ -17,5 +19,21 @@ export const openApiV1Documents = {
             url: `${config.system.applicationApiRootURL}/api/v1`,
             description: ''
         }
-    ]
+    ],
+    tags: [
+        {
+            "name": "Fixtures"
+        }
+    ],
+    paths: {
+        "/fixtures/": {
+            "post": createFixture,
+            "get": queryFixture
+        },
+        "/fixtures/{key}": {
+            "put": updateFixture,
+            "get": getFixtureDetail,
+            "delete": deleteFixture
+        }
+    }
 }

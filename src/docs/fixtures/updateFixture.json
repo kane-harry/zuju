@@ -1,0 +1,60 @@
+{
+  "tags": [
+    "Fixtures"
+  ],
+  "summary": "Update Fixture",
+  "requestBody": {
+    "content": {
+      "multipart/form-data": {
+        "schema": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "example": "Test-updated"
+            },
+            "tags": {
+              "type": "string",
+              "example": "a,b,c,d"
+            },
+            "type": {
+              "type": "string",
+              "example": "News"
+            },
+            "short_description": {
+              "type": "string",
+              "example": "short description"
+            },
+            "content": {
+              "type": "string",
+              "example": "updated - aaaabbbbcccdddeeeefff"
+            },
+            "coverImage": {
+              "type": "string",
+              "format": "binary"
+            }
+          }
+        }
+      }
+    }
+  },
+  "parameters": [
+    {
+      "name": "key",
+      "in": "path",
+      "schema": {
+        "type": "string"
+      },
+      "required": true,
+      "example": "190eace514d0df65"
+    }
+  ],
+  "responses": {
+    "200": {
+      "description": "Successful response",
+      "content": {
+        "application/json": {}
+      }
+    }
+  }
+}
