@@ -2,8 +2,8 @@
 This project is a test for Zuju gaming backend job
 
 Scope:
-- NodeJs with TypeScript
-- Use MySQL as database
+- Use NodeJs with TypeScript
+- Use 'typeorm' to work with MySQL
 - Use 'swagger-ui-express' to show API endpoints
 - Use 'jest' to run unit tests and integration test
 
@@ -28,23 +28,26 @@ Please open your terminal and run below
 ```shell
 npm run start
 ```
-If you can not start because used port, please run try other port like something
+If you can not start because used port, please try other port like something
 ```shell
 PORT=5000 npm start
 ```
 
 #Testing
+I make config to use in-memory sqlite for testing. That mean no need to config test database.
+
 Please open your terminal and run below command
 ```shell
 npm run test
 ```
 If you want to test only 1 test, please run
 ```shell
-npm run test {path to specific test file}
+npm run test src/test/fixture/fixture.integration.test.ts
 ```
-Wait some mins for testing completed, Jest will give you a summary test result
+Wait some minutes for testing completed, Jest will give you a summary test result
 # Show API endpoints
 Please run application first (npm run start)
+
 After that visit below link on your browser (Chrome, Firefox)
 
 
