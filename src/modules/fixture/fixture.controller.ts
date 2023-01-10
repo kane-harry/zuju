@@ -3,13 +3,12 @@ import {CustomRequest} from "@middlewares/request.middleware"
 import FixtureService from "@modules/fixture/fixture.service"
 import {IFixtureCheckingDateFilter, IFixtureQueryFilter} from "@modules/fixture/fixture.interface"
 import {FixtureModel} from "@modules/fixture/fixture.model"
-import {getConnection} from "typeorm"
+import {AppDataSource} from "@config/data-source";
 
 export default class FixtureController {
     static async createFixture(req: CustomRequest, res: Response) {
         const params: FixtureModel = req.body
-        const connection = getConnection()
-        const queryRunner = connection.createQueryRunner()
+        const queryRunner = AppDataSource.createQueryRunner()
         await queryRunner.connect()
         await queryRunner.startTransaction()
         try {
@@ -33,8 +32,7 @@ export default class FixtureController {
     static async updateFixture(req: CustomRequest, res: Response) {
         const key: number = req.params.key
         const params: FixtureModel = req.body
-        const connection = getConnection()
-        const queryRunner = connection.createQueryRunner()
+        const queryRunner = AppDataSource.createQueryRunner()
         await queryRunner.connect()
         await queryRunner.startTransaction()
         try {
@@ -51,8 +49,7 @@ export default class FixtureController {
 
     static async deleteFixture(req: CustomRequest, res: Response) {
         const key: number = req.params.key
-        const connection = getConnection()
-        const queryRunner = connection.createQueryRunner()
+        const queryRunner = AppDataSource.createQueryRunner()
         await queryRunner.connect()
         await queryRunner.startTransaction()
         try {
