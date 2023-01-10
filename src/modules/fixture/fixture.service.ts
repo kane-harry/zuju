@@ -9,8 +9,7 @@ export default class FixtureService {
         const time = new Date(createFixtureDto.time)
         createFixtureDto.time = time.toISOString ? time.toISOString() : createFixtureDto.time
         const repo = getRepository(FixtureModel)
-        const newFixture: FixtureModel = await repo.save(createFixtureDto);
-        return newFixture
+        return await repo.save(createFixtureDto)
     }
 
     static async getFixture(key:number) {
@@ -48,8 +47,7 @@ export default class FixtureService {
         existingFixture.status = updateFixtureDto.status ?? existingFixture.status
         existingFixture.time = updateFixtureDto.time ?? existingFixture.time
 
-        const updatedFixture: FixtureModel = await repo.save(existingFixture);
-        return updatedFixture
+        return await repo.save(existingFixture)
     }
 
     static async deleteFixture(key:number) {
