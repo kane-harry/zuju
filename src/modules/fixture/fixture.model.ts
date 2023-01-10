@@ -49,7 +49,7 @@ export class FixtureModel {
     public awayTeam: string;
 
     @Column({nullable: true})
-    public time: Date;
+    public time: string;
 
     @Column({nullable: true})
     public status: string;

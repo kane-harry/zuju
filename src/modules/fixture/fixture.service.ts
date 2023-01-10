@@ -1,10 +1,13 @@
 import {IFixtureQueryFilter} from "@modules/fixture/fixture.interface";
 import {FixtureModel} from "@modules/fixture/fixture.model";
-import {getRepository, ILike} from "typeorm";
+import {Between, getRepository, ILike} from "typeorm";
 import {QueryRO} from "@interfaces/query.model";
+import moment from 'moment'
 
 export default class FixtureService {
     static async createFixture(createFixtureDto: FixtureModel) {
+        const time = new Date(createFixtureDto.time)
+        createFixtureDto.time = time.toISOString ? time.toISOString() : createFixtureDto.time
         const repo = getRepository(FixtureModel)
         const newFixture: FixtureModel = await repo.save(createFixtureDto);
         return newFixture
@@ -66,11 +69,23 @@ export default class FixtureService {
 
     static async listingFixtures(filter: IFixtureQueryFilter) {
         let where:any = []
+        let andWhere:any = {}
+        if (filter.date) {
+            // Handle user timezone
+            // If user choose 2021-07-15 on calendar an user in GMT+1
+            // That mean user want to search from 2021-07-14T23:00:00.000Z to 2021-07-15T23:00:00.000Z
+            // Remember we store time on database on ISOString format
+            let timezoneOffset = filter.timezone_offset || moment(filter.date).utcOffset()
+            let dateOnly = moment(filter.date).format(moment.HTML5_FMT.DATE)
+            let start = moment.utc(dateOnly).add(timezoneOffset * -1, 'minutes')
+            let end = moment.utc(dateOnly).add(timezoneOffset * -1, 'minutes').add(1, 'day')
+            andWhere.time = Between(start.toISOString(), end.toISOString())
+        }
         if (filter.search_key) {
             //Handle case insensitive
-            where.push({tournament : ILike(`%${filter.search_key}%`)})
-            where.push({homeTeam : ILike(`%${filter.search_key}%`)})
-            where.push({awayTeam : ILike(`%${filter.search_key}%`)})
+            where.push({...andWhere, tournament : ILike(`%${filter.search_key}%`)})
+            where.push({...andWhere, homeTeam : ILike(`%${filter.search_key}%`)})
+            where.push({...andWhere, awayTeam : ILike(`%${filter.search_key}%`)})
         }
         const repo = getRepository(FixtureModel)
         const sortBy = filter.sort_by || 'id'
