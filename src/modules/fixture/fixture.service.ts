@@ -68,11 +68,11 @@ export default class FixtureService {
         const take = filter.page_size || 10
         const page = filter.page_index || 1
         const skip = (page - 1) * take || 0
-        let where:any = {}
+        let where:any = []
         if (filter.search_key) {
-            where.tournament = Like(`%${filter.search_key}%`)
-            where.homeTeam = Like(`%${filter.search_key}%`)
-            where.awayTeam = Like(`%${filter.search_key}%`)
+            where.push({tournament : Like(`%${filter.search_key}%`)})
+            where.push({homeTeam : Like(`%${filter.search_key}%`)})
+            where.push({awayTeam : Like(`%${filter.search_key}%`)})
         }
         const repo = getRepository(FixtureModel)
         const [result, totalCount] = await repo.findAndCount({
