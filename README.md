@@ -18,7 +18,7 @@ If you want to add above features or others, let make request for next meeting
 
 Please open your terminal and run below command
 ```shell
-npm install && npm run build
+npm install
 ```
 This package-lock.json is generated for Linux Environment. 
 
