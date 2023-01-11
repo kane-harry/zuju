@@ -16,6 +16,7 @@ const config: Config.InitialOptions = {
         "@modules/(.*)": "<rootDir>/src/modules/$1",
         "@utils/(.*)": "<rootDir>/src/utils/$1",
         "@docs/(.*)": "<rootDir>/src/docs/$1",
+        "@exceptions/(.*)": "<rootDir>/src/exceptions/$1",
     },
     roots: ["./src"]
 };
