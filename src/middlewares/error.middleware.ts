@@ -10,7 +10,7 @@ function errorMiddleware(error: any, req: CustomRequest, res: Response, next: Ne
     }
 
     return res.status(status).json({
-        error: error.message
+        error: error
     })
 }
 
